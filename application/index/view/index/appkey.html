@@ -1,0 +1,83 @@
+{include file="public/header" title="APPKEY" keywords="APPKEY - 梦城API"/}
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="">APPKEY</a></li>
+                                            <li class="breadcrumb-item active">控制面板</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">APPKEY</h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">APPID</label>
+                                                <input type="email" class="form-control" readonly value="{$user["UID"]}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">用户名</label>
+                                                <input type="text" class="form-control" readonly value="{$user["UserName"]}">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleInputPassword1">APPKEY</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="APPKEY" readonly value="{$user["APPKEY"]}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-dark" id="ReAPPKEY" type="button">重置</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleInputPassword1">APPID状态</label>
+                                                <div class="input-group">
+                                                    {if condition="$user['Code'] gt '0'"}
+                                                    <input type="text" class="form-control" readonly value="正常">
+                                                    {else /} 
+                                                    <input type="text" class="form-control" readonly value="异常">
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                        </div> 
+                        <script type="text/javascript" charset="utf-8">
+                            $('#ReAPPKEY').click(function(){
+                                $.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/appkey',['type'=>'APPKEY'])}',
+                        	        data:null,
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            if(data.code == 200){
+                        	                swal('重置提醒',data.msg, 'success');
+                        	                $('#APPKEY').val(data.New);
+                        	            }else{
+                        	                swal('重置提醒',data.msg, 'warning');
+                        	            }
+                        			},
+                        	    });
+                            });
+                        </script>
+{include file="public/footer"/}

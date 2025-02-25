@@ -1,0 +1,478 @@
+{include file="public/header" title="控制中心" keywords="梦城API控制中心"/}
+                    
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-light" id="dash-daterange">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text bg-primary border-primary text-white">
+                                                            <i class="mdi mdi-calendar-range"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:window.location.reload();" class="btn btn-primary ml-2">
+                                                <i class="mdi mdi-autorenew"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <h4 class="page-title">控制中心</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-xl-12">
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-account-multiple widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">今天调用</h5>
+                                                <h3 class="mt-3 mb-3">{$today}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对昨天</span>  
+                                                    {if condition="$todayTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {/if}
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-cart-plus widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">昨天调用</h5>
+                                                <h3 class="mt-3 mb-3">{$yesterday}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对今天</span>
+                                                    {if condition="$todayTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {/if}
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+                                    
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-currency-usd widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">本周调用</h5>
+                                                <h3 class="mt-3 mb-3">{$week}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对上周</span>
+                                                    {if condition="$weekTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$weekTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$weekTo}% 
+                                                    </span>
+                                                    {/if}
+                                                    <span class="text-nowrap">上周 {$lastweek}</span>  
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+                                    
+                                </div> <!-- end row -->
+
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-currency-usd widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">本月调用</h5>
+                                                <h3 class="mt-3 mb-3">{$month}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对上月</span>
+                                                    {if condition="$monthTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$monthTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$monthTo}% 
+                                                    </span>
+                                                    {/if}
+                                                    <span class="text-nowrap">上月 {$lastmonth}</span>
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-pulse widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">总调用次数</h5>
+                                                <h3 class="mt-3 mb-3">{$count}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">注册时间 {:date("Y-m-d h:i",$user['AddTime'])}</span>
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-pulse widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">拦截恶意请求</h5>
+                                                <h3 class="mt-3 mb-3">{$securityCount}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">占比</span>
+                                                    <span class="text-success mr-2"> {$securityTo} %</span>
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+                                    
+                                </div> <!-- end row -->
+                                
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-right">
+                                            <a href="javascript:window.location.reload();" class="dropdown-toggle arrow-none card-drop">
+                                                <i class="mdi mdi-reload"></i>
+                                            </a>
+                                        </div>
+                                        <h4 class="header-title mb-3">近七天调用</h4>
+                                        <div class="mt-3 chartjs-chart" style="height: 364px;">
+                                            <canvas id="revenue-chart"></canvas>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row -->
+
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-right">
+                                            <a href="javascript:window.location.reload();" class="dropdown-toggle arrow-none card-drop">
+                                                <i class="mdi mdi-reload"></i>
+                                            </a>
+                                        </div>
+                                        <h4 class="header-title mt-2">最近30次调用记录</h4>
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>请求时间</th>
+                                                        <th>请求IP</th>
+                                                        <th>UserAgent</th>
+                                                        <th>请求方式</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {volist name="num30" id="vo"}
+                                                    <tr>
+                                                        <td>
+                                                            {:date('Y-m-d h:i:s',$vo.TIME)}
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:ip('{$vo.IP}');">{$vo.IP}</a>
+                                                        </td>
+                                                        <td>
+                                                            {$vo.UserAgent}
+                                                        </td>
+                                                        <td>
+                                                            {$vo.Request}
+                                                        </td>
+                                                    </tr>
+                                                {/volist}
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end table-responsive-->
+                                        
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                    </div>
+                    <!-- container -->
+                    <script src="https://cdn.gqink.cn/var2/javascript/app.min.js"></script>
+                    <script src="https://cdn.gqink.cn/var2/javascript/Chart.bundle.js"></script>
+                    <script type="text/javascript" charset="utf-8">
+                    !
+                    function(r) {
+                        "use strict";
+                        var e = function() {
+                            this.$body = r("body"),
+                            this.charts = []
+                        };
+                        e.prototype.respChart = function(e, a, t, o) {
+                            var n = Chart.controllers.line.prototype.draw;
+                            Chart.controllers.line.prototype.draw = function() {
+                                n.apply(this, arguments);
+                                var r = this.chart.chart.ctx,
+                                e = r.stroke;
+                                r.stroke = function() {
+                                    r.save(),
+                                    r.shadowColor = "rgba(0,0,0,0.01)",
+                                    r.shadowBlur = 20,
+                                    r.shadowOffsetX = 0,
+                                    r.shadowOffsetY = 5,
+                                    e.apply(this, arguments),
+                                    r.restore()
+                                }
+                            };
+                            var s = Chart.controllers.doughnut.prototype.draw;
+                            Chart.controllers.doughnut = Chart.controllers.doughnut.extend({
+                                draw: function() {
+                                    s.apply(this, arguments);
+                                    var r = this.chart.chart.ctx,
+                                    e = r.fill;
+                                    r.fill = function() {
+                                        r.save(),
+                                        r.shadowColor = "rgba(0,0,0,0.03)",
+                                        r.shadowBlur = 4,
+                                        r.shadowOffsetX = 0,
+                                        r.shadowOffsetY = 3,
+                                        e.apply(this, arguments),
+                                        r.restore()
+                                    }
+                                }
+                            });
+                            var i = Chart.controllers.bar.prototype.draw;
+                            Chart.controllers.bar = Chart.controllers.bar.extend({
+                                draw: function() {
+                                    i.apply(this, arguments);
+                                    var r = this.chart.chart.ctx,
+                                    e = r.fill;
+                                    r.fill = function() {
+                                        r.save(),
+                                        r.shadowColor = "rgba(0,0,0,0.01)",
+                                        r.shadowBlur = 20,
+                                        r.shadowOffsetX = 4,
+                                        r.shadowOffsetY = 5,
+                                        e.apply(this, arguments),
+                                        r.restore()
+                                    }
+                                }
+                            });
+                            var l = e.get(0).getContext("2d"),
+                            c = r(e).parent();
+                            return function() {
+                                var n;
+                                switch (e.attr("width", r(c).width()), a) {
+                                case "Line":
+                                    n = new Chart(l, {
+                                        type: "line",
+                                        data: t,
+                                        options: o
+                                    });
+                                    break;
+                                case "Doughnut":
+                                    n = new Chart(l, {
+                                        type: "doughnut",
+                                        data: t,
+                                        options: o
+                                    });
+                                    break;
+                                case "Pie":
+                                    n = new Chart(l, {
+                                        type: "pie",
+                                        data: t,
+                                        options: o
+                                    });
+                                    break;
+                                case "Bar":
+                                    n = new Chart(l, {
+                                        type: "bar",
+                                        data: t,
+                                        options: o
+                                    });
+                                    break;
+                                case "Radar":
+                                    n = new Chart(l, {
+                                        type: "radar",
+                                        data: t,
+                                        options: o
+                                    });
+                                    break;
+                                case "PolarArea":
+                                    n = new Chart(l, {
+                                        data: t,
+                                        type: "polarArea",
+                                        options: o
+                                    })
+                                }
+                                return n
+                            } ()
+                        },
+                        e.prototype.initCharts = function() {
+                            var e = [];
+                            if (r("#revenue-chart").length > 0) {
+                                var day1 = new Date();
+                                e.push(this.respChart(r("#revenue-chart"), "Line", {
+                                    labels: ["{:date("m-d",strtotime("-6 day"))}", "{:date("m-d",strtotime("-5 day"))}", "{:date("m-d",strtotime("-4 day"))}", "{:date("m-d",strtotime("-3 day"))}", "{:date("m-d",strtotime("-2 day"))}", "{:date("m-d",strtotime("-1 day"))}","{:date("m-d")}"],
+                                    datasets: [
+                                    {
+                                        label: "调用",
+                                        fill: !0,
+                                        backgroundColor: "transparent",
+                                        borderColor: "#0acf97",
+                                        data: [{$day6}, {$day5}, {$day4}, {$day3}, {$day2}, {$yesterday}, {$today}]
+                                    }]
+                                },
+                                {
+                                    maintainAspectRatio: !1,
+                                    legend: {
+                                        display: !1
+                                    },
+                                    tooltips: {
+                                        intersect: !1
+                                    },
+                                    hover: {
+                                        intersect: !0
+                                    },
+                                    plugins: {
+                                        filler: {
+                                            propagate: !1
+                                        }
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            reverse: !0,
+                                            gridLines: {
+                                                color: "rgba(0,0,0,0.05)"
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                stepSize: 20
+                                            },
+                                            display: !0,
+                                            borderDash: [5, 5],
+                                            gridLines: {
+                                                color: "rgba(0,0,0,0)",
+                                                fontColor: "#fff"
+                                            }
+                                        }]
+                                    }
+                                }))
+                            }
+                            if (r("#average-sales").length > 0) {
+                                e.push(this.respChart(r("#average-sales"), "Doughnut", {
+                                    labels: ["Direct", "Affilliate", "Sponsored", "E-mail"],
+                                    datasets: [{
+                                        data: [300, 135, 48, 154],
+                                        backgroundColor: ["#727cf5", "#fa5c7c", "#0acf97", "#ebeff2"],
+                                        borderColor: "transparent",
+                                        borderWidth: "3"
+                                    }]
+                                },
+                                {
+                                    maintainAspectRatio: !1,
+                                    cutoutPercentage: 60,
+                                    legend: {
+                                        display: !1
+                                    }
+                                }))
+                            }
+                            return e
+                        },
+                        e.prototype.init = function() {
+                            var e = this;
+                            Chart.defaults.global.defaultFontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+                            r("#dash-daterange").daterangepicker({
+                                singleDatePicker: !0
+                            }),
+                            e.charts = this.initCharts(),
+                            r(window).on("resize",
+                            function(a) {
+                                r.each(e.charts,
+                                function(r, e) {
+                                    try {
+                                        e.destroy()
+                                    } catch(r) {}
+                                }),
+                                e.charts = e.initCharts()
+                            })
+                        },
+                        r.Dashboard = new e,
+                        r.Dashboard.Constructor = e
+                    } (window.jQuery),
+                    function(r) {
+                        "use strict";
+                        r.Dashboard.init()
+                    } (window.jQuery);
+                    function writeCurrentDate() {
+                        var now = new Date();
+                        var year = now.getFullYear(); //得到年份
+                        var month = now.getMonth();//得到月份
+                        var date = now.getDate();//得到日期
+                        var day = now.getDay();//得到周几
+                        var hour = now.getHours();//得到小时
+                        var minu = now.getMinutes();//得到分钟
+                        var sec = now.getSeconds();//得到秒
+                　　     var ms = now.getMilliseconds();//获取毫秒
+                        var week;
+                        month = month + 1;
+                        if (month < 10) month = "0" + month;
+                        if (date < 10) date = "0" + date;
+                        if (hour < 10) hour = "0" + hour;
+                        if (minu < 10) minu = "0" + minu;
+                        if (sec < 10) sec = "0" + sec;
+                        if (ms < 100)ms = "0" + ms;
+                        var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+                        week = arr_week[day];
+                        var time = "";
+                        time = year + "年" + month + "月" + date + "日" + " " + hour + ":" + minu + ":" + sec + " " + week;
+                        console.log(time);
+                        var timer = setTimeout("writeCurrentDate()", 1000);
+                        return time;
+                    }writeCurrentDate();
+                </script>
+{include file="public/footer"/}

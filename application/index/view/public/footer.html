@@ -1,0 +1,85 @@
+                </div>
+                <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                2020 © 梦城 - www.gqink.cn
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                    <a target="_blank" href="https://me.gqink.cn">Index</a>
+                                    <a target="_blank" href="https://www.gqink.cn">Blog</a>
+                                    <a target="_blank" href="https://www.gqink.cn/about.html">About</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+        <section id="loading" class="loading">
+           <div class="containerss">
+                <div class="one common"></div>
+                <div class="two common"></div>
+                <div class="three common"></div>
+                <div class="four common"></div>
+                <div class="five common"></div>
+                <div class="six common"></div>
+                <div class="seven common"></div>
+                <div class="eight common"></div>
+            </div>
+        </section>  
+        {if condition="request()->action() eq  'index'"}{else /}<script src="https://cdn.gqink.cn/var2/javascript/app.min.js"></script>{/if}
+        <script src="https://cdn.gqink.cn/sweetalert/sweetalert/sweetalert.min.js"></script>
+        <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!--<script src="https://cdn.gqink.cn/jQuery/jquery.pjax.js" type="text/javascript"></script>-->
+        <script type="text/javascript">
+        $(function(){
+            $('#loading').hide();
+        });
+        /*$(document).pjax('a[target!=_blank]', '#html', {fragment: '#html',timeout: 8000});
+            $(document).on('pjax:send', function() {
+            $('#loading').show()
+        });
+        $(document).on('pjax:complete', function() {
+            $('#loading').hide();
+        });*/
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            function ip(address){
+        	    $.ajax({
+        	        type:'post',
+        	        async:false,
+        	        url:'{:url('index/index/ip')}',
+        	        data:{address:address},
+        	        beforeSend : function(){
+        	            swal('IP查询中...', '正在查询...', 'info');
+            	    },
+            	    complete : function(){
+            	        
+            	    },
+        		    error : function(){
+        		        swal('IP查询失败', '网络异常或环境配置异常', 'error');
+        		    },
+        	        success:function(data){
+        	            swal('IP查询成功', data.country+" "+data.regionName+" "+data.city, 'success');
+        			},
+        	    });
+        	}
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>账号注册 - 梦城API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="梦城API" name="description" />
+        <meta content="梦城" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="https://cdn.gqink.cn/favicon.ico">
+
+        <!-- App css -->
+        <!-- build:css -->
+        <link href="https://cdn.gqink.cn/var2/css/app.min.css" rel="stylesheet" type="text/css" />
+        <!-- endbuild -->
+
+    </head>
+
+    <body class="authentication-bg">
+
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card">
+                            <!-- Logo-->
+                            <div class="card-header pt-4 pb-4 text-center bg-primary">
+                                <a href="">
+                                    <span><img src="https://cdn.gqink.cn/blog/logo.svg" alt="" height="50"></span>
+                                </a>
+                            </div>
+
+                            <div class="card-body p-4" id="pans">
+                                
+                                <div class="text-center w-75 m-auto">
+                                    <h4 class="text-dark-50 text-center mt-0 font-weight-bold">账号注册</h4>
+                                    <p class="text-muted mb-4">您还没有账号吗? 赶快注册, 欢迎使用梦城API </p>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label for="fullname">用户名</label>
+                                    <input class="form-control" type="text" id="UserName" placeholder="请输入您的用户名" required>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="emailaddress">邮箱</label>
+                                    <input class="form-control" type="email" id="Email" required placeholder="请输入邮箱账号">
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col-7"><input type="text" id="Email_Code" class="form-control" placeholder="请输入验证码">
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-info" id="Email_Send">发送验证码</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="password">密码</label>
+                                    <input class="form-control" type="password" required id="Password" placeholder="请输入密码">
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label for="password">确认密码</label>
+                                    <input class="form-control" type="password" required id="IsPassword" placeholder="请再次输入密码">
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="checkbox-signup">
+                                        <label class="custom-control-label" for="checkbox-signup">我同意 <a href="" class="text-dark">相关协议</a></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-0 text-center">
+                                    <button class="btn btn-primary" id="RegisterBtn"> 注册 </button>
+                                </div>
+
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-muted">已有账号? <a href="/login" class="text-dark ml-1"><b>登陆</b></a></p>
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+        <footer class="footer footer-alt">
+            2020 © 梦城 - www.gqink.cn
+        </footer>
+        <!-- register ok svg -->
+        <div id="isok" style="display:none">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2" xml:space="preserve">
+                <path class="path" fill="none" stroke="#0acf97" stroke-miterlimit="10" d="M425.9,52.1L425.9,52.1c-2.2-2.6-6-2.6-8.3-0.1l-42.7,46.2l-14.3-16.4
+                    c-2.3-2.7-6.2-2.7-8.6-0.1c-1.9,2.1-2,5.6-0.1,7.7l17.6,20.3c0.2,0.3,0.4,0.6,0.6,0.9c1.8,2,4.4,2.5,6.6,1.4c0.7-0.3,1.4-0.8,2-1.5
+                    c0.3-0.3,0.5-0.6,0.7-0.9l46.3-50.1C427.7,57.5,427.7,54.2,425.9,52.1z"></path>
+                <circle class="path" fill="none" stroke="#0acf97" stroke-width="4" stroke-miterlimit="10" cx="80.6" cy="80.6" r="62.1"></circle>
+                <polyline class="path" fill="none" stroke="#0acf97" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="113,52.8
+                    74.1,108.4 48.2,86.4 "></polyline>
+            
+                <circle class="spin" fill="none" stroke="#0acf97" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"></circle>
+            </svg>
+        </div>
+        <!-- App js -->
+        <script src="https://cdn.gqink.cn/var2/javascript/app.min.js"></script>
+        <script src="https://cdn.gqink.cn/sweetalert/sweetalert/sweetalert.min.js"></script>
+        <script src="https://cdn.gqink.cn/blog/New/js/gt.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            var countdown = 60;
+            var EmailCode = function (captchaObj) {
+                captchaObj.onReady(function () {
+                    $("#wait").hide();
+                }).onSuccess(function () {
+                    var result = captchaObj.getValidate();
+                    if (!result) {
+                        swal({
+                          title: "邮件提醒",
+                          icon: "warning",
+                          button: "知道了",
+                          text:'请完成验证后发送邮件',
+                        });
+                        return;
+                    }
+                    var Email = $("#Email").val();
+                    if(Email == ""){
+                	    swal({
+                          title: "邮件提醒",
+                          icon: "warning",
+                          button: "知道了",
+                          text:'请输入您的邮箱账号',
+                        });
+                        return;
+                	}
+                    $.ajax({
+                		type: "post",
+                		url: "{:url('register/index/Email');}",
+                		data: {
+                		    Email : Email,
+                		    geetest_challenge: result.geetest_challenge,
+                            geetest_validate: result.geetest_validate,
+                            geetest_seccode: result.geetest_seccode
+                		},   
+                		timeout: 5000,   
+                		async: true,  
+                		beforeSend:function(){
+                		},
+                		complete:function(){
+                			captchaObj.reset();
+                		},
+                		error: function() {
+                			swal({
+                              title: "邮件提醒",
+                              icon: "warning",
+                              button: "知道了",
+                              text:'邮件发送超时，请重试',
+                            });
+                            return;
+                            captchaObj.reset();
+                		}, 
+                		success: function(Result) {
+                			if(Result.code == 200){
+                			    setTime();
+                			}else{
+                			    swal({
+                                  title: "邮件提醒",
+                                  icon: "warning",
+                                  button: "知道了",
+                                  text:Result.msg,
+                                });
+                                return;
+                			}
+                		}
+                	}); 
+                });
+                $('#Email_Send').click(function () {
+                    captchaObj.verify();
+                });
+            };
+            $.ajax({
+                url: "{:url('register/index/GtCode');}?t=" + (new Date()).getTime(), 
+                type: "post",
+                data:null,   
+                dataType: "json",
+                success: function (data) {
+                    initGeetest({
+                        gt: data.gt,
+                        challenge: data.challenge,
+                        offline: !data.success,
+                        new_captcha: data.new_captcha,
+                        product: "bind",
+                        width: "300px",
+                        https: true
+                    }, EmailCode);
+                }
+            });
+            function setTime() {
+                if (countdown == 0) {
+                    $("#Email_Send").prop('disabled', false);
+                    $("#Email_Send").text("获取验证码");
+                    countdown = 60;
+                    return;
+                } else {
+                    $("#Email_Send").prop('disabled', true);
+                    $("#Email_Send").text("("+countdown+"s)后可重发") ;
+                    countdown--;
+                }
+                setTimeout(function() { setTime() },1000);
+            }
+        	$("#RegisterBtn").on("click",function() {
+        	    var UserName = $("#UserName").val(),Email = $("#Email").val(),Password = $("#Password").val(),IsPassword = $("#IsPassword").val(),Email_Code = $("#Email_Code").val();
+        	    if(UserName == ""){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'请输入您要设置用户名',
+                    });
+                    return;
+        	    }
+        	    if(Email == ""){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'请输入您要绑定邮箱',
+                    });
+                    return;
+        	    }
+        	    if(Password == ""){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'请输入您要设置密码',
+                    });
+                    return;
+        	    }
+        	    if(IsPassword == ""){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'请再次输出密码确认密码',
+                    });
+                    return;
+        	    }
+        	    if(IsPassword != Password){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'抱歉！两次密码不一致',
+                    });
+                    return;
+        	    }
+        	    if(!$('#checkbox-signup').is(':checked')){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "info",
+                      button: "知道了",
+                      text:'请选择阅读同意注册协议',
+                    });
+                    return;
+        	    }
+        	    if(Email_Code == ""){
+        	        swal({
+                      title: "注册提醒",
+                      icon: "warning",
+                      button: "知道了",
+                      text:'请您输入邮箱验证码',
+                    });
+                    return;
+        	    }
+        	    $.ajax({
+                    type:'post',
+                    async:false,
+                    url:'{:url('register/index/callback');}',
+                    data:{UserName:UserName,Email:Email,Password:Password,Email_Code:Email_Code},
+                    beforeSend : function(){
+                        
+            	    },
+            	    complete : function(){
+            	        
+            	    },
+                    error : function(){
+                        
+                    },
+                    success:function(data){
+                        if(data.code == 200){
+                            swal({
+                              title: "注册提醒",
+                              icon: "success",
+                              button: "知道了",
+                              text:'恭喜你！注册成功',
+                            });
+                            $('#pans').html(
+                                '<div class="text-center w-75 m-auto">'+
+                                    '<h4 class="text-dark-50 text-center mt-0 font-weight-bold">太棒了 !</h4>'+
+                                    '<p class="text-muted mb-4">恭喜你注册成功.</p>'+
+                                '</div>'+
+                                '<div class="logout-icon m-auto">'+$('#isok').html()+'</div>');
+                        }else{
+                            swal({
+                              title: "注册提醒",
+                              icon: "error",
+                              button: "知道了",
+                              text:data.msg,
+                            });
+                        }
+            		},
+                });
+        	});
+        </script>
+    </body>
+</html>

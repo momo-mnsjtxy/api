@@ -1,0 +1,250 @@
+{include file="public/header" title="账号设置" keywords="账号设置 - 梦城API"/}
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="">账号设置</a></li>
+                                            <li class="breadcrumb-item active">控制面板</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">账号设置</h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3 header-title">修改登陆密码</h4>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" readonly value="{$user["UID"]}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">新密码</label>
+                                            <input type="password" class="form-control" id="NewPass" placeholder="请输入新密码">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">确认新密码</label>
+                                            <input type="password" class="form-control" id="Pass" placeholder="请再输入新密码确认密码是否一致">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">绑定邮箱</label>
+                                            <input type="email" class="form-control" readonly value="{$user["Email"]}">
+                                            <small id="emailHelp" class="form-text text-muted">修改密码的验证码会发送到此邮箱</small>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-7">
+                                                <input type="text" id="Email_Code" class="form-control" placeholder="请输入验证码">
+                                                <small id="emailHelp" class="form-text text-muted">发送成功没收可能被误拦截</small>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-info" id="Email_Send">发送验证码</button>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" id="RePass" class="btn btn-primary">修改密码</button>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3 header-title">修改邮箱绑定</h4>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" readonly value="{$user["Email"]}">
+                                            <small id="emailHelp" class="form-text text-muted">默认绑定的邮箱号</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">新的邮箱号</label>
+                                            <input type="email" class="form-control" id="Email" placeholder="请输入新的邮箱账号">
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-7">
+                                                <input type="text" id="EmailCode" class="form-control" placeholder="请输入验证码">
+                                                <small id="emailHelp" class="form-text text-muted">发送成功没收可能被误拦截</small>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-info" id="EmailSend">发送验证码</button>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" id="ReEmails" class="btn btn-primary">修改邮箱</button>
+                                        </div>
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                            <!-- end col -->
+                        </div> 
+                        <!-- end row -->
+                        <script type="text/javascript" charset="utf-8">
+                            $("#RePass").click(function(){
+                                var NewPass = $("#NewPass").val(),Pass = $("#Pass").val(),Email_Code = $("#Email_Code").val();
+                                if(NewPass == ""){
+                                    swal('修改提示', '请输入要设置的新密码', 'warning');
+                                    return;
+                                }
+                                if(Pass == ""){
+                                    swal('修改提示', '请再次输入新密码验证是否一致', 'warning');
+                                    return;
+                                }
+                                if(NewPass != Pass){
+                                    swal('修改提示', '两次密码不一致', 'warning');
+                                    return;
+                                }
+                                if(Email_Code == ""){
+                                    swal('修改提示', '请输入邮箱验证码', 'warning');
+                                    return;
+                                }
+                                $.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/setting',['type'=>'RePass'])}',
+                        	        data:{Password:NewPass,Email_Code:Email_Code},
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            if(data.code == 200){
+                        	                swal('修改提示','恭喜你！密码修改成功', 'success');
+                        	                setInterval(function(){
+                                               window.location.reload();
+                                            },1500);
+                        	            }else{
+                        	                swal('修改提示',data.msg, 'warning');
+                        	            }
+                        			},
+                        	    });
+                            });
+                            $('#Email_Send').click(function(){
+                                $.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/setting',['type'=>'doEmail'])}',
+                        	        data:null,
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            if(data.code == 200){
+                        	                setTime();
+                        	            }else{
+                        	                swal('邮箱提醒',data.msg, 'warning');
+                        	            }
+                        			},
+                        	    });
+                            });
+                            
+                            $("#ReEmails").click(function(){
+                                var Email = $("#Email").val(),EmailCode = $("#EmailCode").val();
+                                if(Email == ""){
+                                    swal('修改提示', '请输入新邮箱账号', 'warning');
+                                    return;
+                                }
+                                if(EmailCode == ""){
+                                    swal('修改提示', '请输入邮箱验证码', 'warning');
+                                    return;
+                                }
+                                $.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/setting',['type'=>'ReEmail'])}',
+                        	        data:{Email:Email,EmailCode:EmailCode},
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            if(data.code == 200){
+                        	                swal('修改提示','恭喜你！邮箱绑定修改成功', 'success');
+                        	                setInterval(function(){
+                                               window.location.reload();
+                                            },1500);
+                        	            }else{
+                        	                swal('修改提示',data.msg, 'warning');
+                        	            }
+                        			},
+                        	    });
+                            });
+                            $('#EmailSend').click(function(){
+                                var Email = $("#Email").val();
+                                if(Email == ""){
+                                    swal('修改提示', '请输入新的绑定邮箱账号', 'warning');
+                                    return;
+                                }
+                                $.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/setting',['type'=>'ReEmailCode'])}',
+                        	        data:{Email:Email},
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            if(data.code == 200){
+                        	                setTimes();
+                        	            }else{
+                        	                swal('邮箱提醒',data.msg, 'warning');
+                        	            }
+                        			},
+                        	    });
+                            });
+                            
+                            var countdown = 60;
+                            function setTime() {
+                                if (countdown == 0) {
+                                    $("#Email_Send").prop('disabled', false);
+                                    $("#Email_Send").text("获取验证码");
+                                    countdown = 60;
+                                    return;
+                                } else {
+                                    $("#Email_Send").prop('disabled', true);
+                                    $("#Email_Send").text("("+countdown+"s)后可重发") ;
+                                    countdown--;
+                                }
+                                setTimeout(function() { setTime() },1000);
+                            }
+                            var countdowns = 60;
+                            function setTimes() {
+                                if (countdowns == 0) {
+                                    $("#EmailSend").prop('disabled', false);
+                                    $("#EmailSend").text("获取验证码");
+                                    countdowns = 60;
+                                    return;
+                                } else {
+                                    $("#EmailSend").prop('disabled', true);
+                                    $("#EmailSend").text("("+countdowns+"s)后可重发") ;
+                                    countdowns--;
+                                }
+                                setTimeout(function() { setTimes() },1000);
+                            }
+                        </script>
+{include file="public/footer"/}

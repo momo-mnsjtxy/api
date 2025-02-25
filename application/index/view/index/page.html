@@ -1,0 +1,351 @@
+{include file="public/header" title="$page.Name" keywords="$page.Des"/}
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="">{$page.Name}</a></li>
+                                            <li class="breadcrumb-item active">控制面板</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">{$page.Name}</h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+                        
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-account-multiple widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">今天调用</h5>
+                                                <h3 class="mt-3 mb-3">{$today}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对昨天</span>  
+                                                    {if condition="$todayTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {/if}
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+    
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-cart-plus widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">昨天调用</h5>
+                                                <h3 class="mt-3 mb-3">{$yesterday}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">相对今天</span>
+                                                    {if condition="$todayTo gt '0'"}
+                                                    <span class="text-success">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {else /} 
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>{$todayTo}% 
+                                                    </span>
+                                                    {/if}
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+                                    
+                                    <div class="col-lg-4">
+                                        <div class="card widget-flat">
+                                            <div class="card-body">
+                                                <div class="float-right">
+                                                    <i class="mdi mdi-currency-usd widget-icon"></i>
+                                                </div>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="">总调用</h5>
+                                                <h3 class="mt-3 mb-3">{$count}</h3>
+                                                <p class="mb-0 text-muted">
+                                                    <span class="text-nowrap">拦截恶意</span>
+                                                    <span class="text-success mr-2"> {$securityCount}</span>
+                                                </p>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div> <!-- end col-->
+                                    
+                                </div> <!-- end row -->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">请求方式</h4>
+                                        <p class="text-muted font-13">
+                                            接口的请求方式
+                                        </p>
+    
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-center">
+                                                        GET
+                                                    </th>
+                                                    <th class="text-center">
+                                                        POST
+                                                    </th>
+                                                    <th class="text-center">
+                                                        PUT
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th class="text-nowrap" scope="row">是否支持</th>
+                                                    <td>{if condition="$page.get eq  '1'"}支持{else /}不支持{/if}</td>
+                                                    <td>{if condition="$page.post eq  '1'"}支持{else /}不支持{/if}</td>
+                                                    <td>{if condition="$page.put eq  '1'"}支持{else /}不支持{/if}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-nowrap" scope="row">接口链接</th>
+                                                    <td>{:request()->domain()}{:url('api/v2/'.$page.Keyword)}{$page.testAction}&appid={$user.UID}&appkey={$user.APPKEY}</td>
+                                                    <td>{:request() -> domain()}{:url('api/v2/'.$page.Keyword)}<br/>（参数见下方）</td>
+                                                    <td>{:request() -> domain()}{:url('api/v2/'.$page.Keyword)}<br/>（参数见下方）</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end table-responsive-->
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">请求参数</h4>
+                                        <p class="text-muted font-13">
+                                            接口的请求需要提交的参数
+                                        </p>
+    
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        参数名
+                                                    </th>
+                                                    <th class="text-center">
+                                                        参数值
+                                                    </th>
+                                                    <th class="text-center">
+                                                        描述
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>appid</td>
+                                                        <td>{$user.UID}</td>
+                                                        <td>您唯一的APPID号</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>appkey</td>
+                                                        <td>{$user.APPKEY}</td>
+                                                        <td>您的APPKEY秘钥</td>
+                                                    </tr>
+                                                    {$parameter}
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end table-responsive-->
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row -->
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">请求代码</h4>
+                                        <p class="text-muted font-13">
+                                            PHP
+                                        </p>
+                                        <div class="table-responsive">
+<pre><code class="PHP">/*
+*PHP的调用方法
+*By梦城 admin@gqink.cn
+*2020年3月20日12:52:43
+*/
+function GET_JSON($API,$Data){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $API);         //设置请求地址
+    curl_setopt($curl, CURLOPT_HEADER, 0);         // 获取响应头的信息
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //成功只将结果返回不输出失败返回FALSE
+    curl_setopt($curl, CURLOPT_POST, 1);           //设置正规的HTTP POST
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //SSL相关
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); //SSL相关
+    curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1); //强制HTTP/1.1
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);       // 设置cURL允许执行的最长秒数
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $Data); //传入请求参数
+    $data = curl_exec($curl);                      //获取结果
+    curl_close($curl);                             //关闭请求
+    $data = json_decode(trim($data,chr(239).chr(187).chr(191)),true); //JSON转PHP数组
+    return $data;  //返回数据
+}
+$POST = [
+    'type' => 'json',
+    'APPID' => '{$user.UID}',
+    'APPKEY' => '{$user.APPKEY}'
+]
+$API = '{:request() -> domain()}{:url('api/v2/'.$page.Keyword)}';
+$data = GET_JSON($API,$POST);
+var_dump($data);
+</code></pre>
+                                        </div> <!-- end table-responsive-->
+                                        <p class="text-muted font-13">
+                                            JavaScript
+                                        </p>
+                                        <div class="table-responsive">
+<pre><code class="JavaScript">/*
+*Js的调用方法
+*By梦城 admin@gqink.cn
+*2020年3月20日12:47:43
+*/
+$.ajax({
+    type:'post',
+    async:false, //是否异步同步
+    url:'{:request() -> domain()}{:url('api/v2/'.$page.Keyword)}',
+    data:{type:'json',appid:'{$user.UID}',appkey:'{$user.APPKEY}'}, //请求的参数数据
+    beforeSend : function(){
+        alert('请求中'); //请求中执行的操作
+    },
+    complete : function(){
+        alert('请求完成');//请求完成执行的代码
+    },
+    error : function(){
+        alert('请求失败'); //请求失败执行的代码
+    },
+    success:function(data){
+        alert(data); //请求成功执行的代码
+    },
+});</code></pre>
+                                        </div> <!-- end table-responsive-->
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row -->
+                        
+                        <div class="row" id="log">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dropdown float-right">
+                                            <a href="javascript:reloadData();" class="dropdown-toggle arrow-none card-drop">
+                                                <i class="mdi mdi-reload"></i>刷新
+                                            </a>
+                                        </div>
+                                        <h4 class="header-title">当前接口调用数据</h4>
+                                        <p class="text-muted font-13">
+                                            当前访问接口的调用记录以及IP详细
+                                        </p>
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>请求时间</th>
+                                                        <th>请求IP</th>
+                                                        <th>UserAgent</th>
+                                                        <th>请求方式</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="Log_data">
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="text-center" id="add_success_log"><button type="button" class="btn btn-info">加载更多</button></div>
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row-->
+                        <!-- bundle -->
+                        <script type="text/javascript" charset="utf-8">
+                            data_log(1);
+                            function reloadData(){
+                                swal('已经刷新', '已经为你刷新数据', 'success');
+                                $('#Log_data').html('');
+                                data_log(1);
+                            }
+                            $("#add_success_log").click(function(){
+                                if(Number(conf.Page)+Number(1)>conf.PageCount){
+                                    return;
+                                }
+                        		data_log(Number(conf.Page)+Number(1));
+                        	});
+                        	$(window).scroll(function () {
+                                if ($("body").height() - $(this).scrollTop() - $(this).height()<0){
+                                    if(Number(conf.Page)+Number(1)>conf.PageCount){
+                                        return;
+                                    }
+                                    data_log(Number(conf.Page)+Number(1));
+                                }
+                        	});
+                        	function data_log(page){
+                        		$.ajax({
+                        	        type:'post',
+                        	        async:false,
+                        	        url:'{:url('index/index/page',['api'=>$page.Keyword])}',
+                        	        data:{p:page,type:'list'},
+                        	        beforeSend : function(){
+                        	            
+                            	    },
+                            	    complete : function(){
+                            	        
+                            	    },
+                        		    error : function(){
+                        		        swal('数据加载失败', '网络异常或环境配置异常', 'error');
+                        		    },
+                        	        success:function(data){
+                        	            window.conf = data.conf;
+                        	            if(data.conf.PageCount == data.conf.Page){
+                        	        		$('#add_success_log').html('<button type="button" class="btn btn-secondary">已加载全部</button>');
+                        	        	}
+                        	        	if(!data.data.length){
+                        	                $('#add_success_log').html('<button type="button" class="btn btn-secondary">没有数据</button>');
+                        	            }
+                        	        	for(var i = 0; i < data.data.length;i++){
+                                            var newDate = new Date();
+                                            newDate.setTime(data.data[i].TIME * 1000);
+                        	        		 $('#Log_data').append('<tr>'+
+                                                '<td>'+newDate.toLocaleString()+'</td>'+
+                                                '<td><a href="javascript:ip(\''+data.data[i].IP+'\');">'+data.data[i].IP+'</a></td>'+
+                                                '<td>'+data.data[i].UserAgent+'</td>'+
+                                                '<td>'+data.data[i].Request+'</td>'+
+                                            '</tr>');
+                        	        	};
+                        			},
+                        	    });
+                        	}
+                        </script>
+{include file="public/footer"/}
